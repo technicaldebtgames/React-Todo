@@ -6,6 +6,7 @@ import Todo from './Todo';
 
 const TodoList = (props) => {
 
+    // just render a list of todo items and send them their props/key
     return (
         <div className='todo-list'>
             {props.items.map(item => 

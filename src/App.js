@@ -3,7 +3,7 @@ import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 
 const initialState = {
-    counter: 2,
+    counter: 2, // timestamps are dumb
     items: [{value: 'List item 1',
              id: 0,
              complete: false},
@@ -26,6 +26,7 @@ export default class App extends React.Component {
                                                   // use them without undef state errors
   };
 
+  // adds a new item to the array
   addItem(value) {
     const newItem = {
       value: value,
@@ -36,12 +37,14 @@ export default class App extends React.Component {
                    items: [...this.state.items, newItem]});
   };
 
+  // clears out completed items from the list
   clearItems() {
     let tempItems = this.state.items.filter(item => item.complete === false);
     this.setState({...this.state,
                    items: tempItems});
   };
 
+  // toggles an item between complete and incomplete states
   toggleCompleteItem = id => {
     this.setState({...this.state,
       items: this.state.items.map(item => {

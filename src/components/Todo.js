@@ -3,6 +3,7 @@ import './Todo.css';
 
 const Todo = (props )=> {
 
+    // renders a single div with styling when complete/incomplete and onClick toggle
     return (
         <div className={'todo-item ' + (props.item.complete ? 'complete' : 'incomplete')} onClick={() => props.toggleCompleteItem(props.item.id)} >
             {props.item.value}

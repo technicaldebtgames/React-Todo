@@ -9,10 +9,12 @@ export default class TodoForm extends React.Component {
         };
     };
 
+    // when a change occurs, update state
     handleChanges = event => {
         this.setState({text: event.target.value});
     };
 
+    // when submit happens, update state (if text field isn't empty)
     handleSubmit = event => {
         event.preventDefault();
         if(this.state.text !== ''){
@@ -21,6 +23,7 @@ export default class TodoForm extends React.Component {
         };
     };
 
+    // form contains a submit button and a clear list button, as well as text input field
     render() {
         return (
             <form className='todo-form' onSubmit={this.handleSubmit}>
