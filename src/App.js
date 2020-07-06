@@ -20,17 +20,20 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {...initialState}; // just some state to play with
-    //this.toggleCompleteItem = this.toggleCompleteItem.bind(this);
+    this.addItem = this.addItem.bind(this);
+    this.clearItems = this.clearItems.bind(this); // had to .bind(this) for the
+                                                  // child class component(s) to be able to
+                                                  // use them without undef state errors
   };
 
   addItem(value) {
-    let tempItems = [...this.state.items];
-    let tempCounter = this.state.counter + 1;
-    tempItems.push({value: value,
-                    id: this.state.counter,
-                    complete: false});
-    this.setState({counter: tempCounter,
-                   items: tempItems});
+    const newItem = {
+      value: value,
+      id: this.state.counter,
+      complete: false
+    };
+    this.setState({counter: this.state.counter + 1,
+                   items: [...this.state.items, newItem]});
   };
 
   clearItems() {
