@@ -9,7 +9,7 @@ const initialState = {
              complete: false},
             {value: 'List item two',
              id: 1,
-             complete: false}]
+             complete: true}]
 };
 
 export default class App extends React.Component {
@@ -20,6 +20,7 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {...initialState}; // just some state to play with
+    //this.toggleCompleteItem = this.toggleCompleteItem.bind(this);
   };
 
   addItem(value) {
@@ -38,16 +39,15 @@ export default class App extends React.Component {
                    items: tempItems});
   };
 
-  toggleCompleteItem(id) {
-    //console.log(this.state.items);
-    let tempItems = this.state.items;
-    tempItems.map(item => {
-      if (item.id === id) {
-        item.complete = !item.complete;
-      };
-    });
+  toggleCompleteItem = id => {
     this.setState({...this.state,
-                   items: tempItems});
+      items: this.state.items.map(item => {
+        if (item.id === id) {
+          return {...item, complete: !item.complete};
+        }
+        else return item;
+      })
+    });
 
   };
 
